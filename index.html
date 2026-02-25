@@ -6,9 +6,9 @@
 <title>शुभ विवाह — ऋषिकेश & ऋतिका</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Serif+Devanagari:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Shivaji01';src:url('shivaji01.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'Shivaji01';src:url('Shreelipi_1003.TTF') format('truetype');font-display:swap;}
 :root{
-  --mr:'Shivaji01','Baloo 2','Noto Serif Devanagari',serif;
+  --mr:'Shivaji01','Shivaji01','Noto Serif Devanagari',serif;
   --lav:#7c5cbf;--lav2:#9b7dd4;--lav3:#5a3fa0;
   --rose:#c85b8a;--rose2:#e879a8;
   --gold:#c9a84c;--gold2:#f0d080;
@@ -89,7 +89,7 @@ body{font-family:var(--mr);background:#0d0520;color:var(--dark);overflow-x:hidde
 .split-name .inner{
   display:block;font-family:var(--mr);
   font-size:clamp(60px,16vw,116px);
-  font-weight:800;line-height:1.05;
+  font-weight:800;line-height:1.6;
   transform:translateY(110%);
   transition:transform 1.1s cubic-bezier(0.16,1,0.3,1);
   padding-bottom:4px;
@@ -316,8 +316,18 @@ body{font-family:var(--mr);background:#0d0520;color:var(--dark);overflow-x:hidde
 .fc-parents{color:var(--mid);font-size:clamp(13px,3.5vw,15px);line-height:2;font-family:var(--mr);}
 .fc-parents .hl{color:var(--dark);font-weight:700;}
 .fc-parents .role{color:var(--rose);font-style:italic;font-size:0.9em;}
-.fc-name{font-family:var(--mr);font-size:clamp(17px,4.5vw,23px);font-weight:700;margin-top:10px;display:block;background:linear-gradient(180deg,#fff8dc,#ffd700,#b8860b,#ffd700,#fff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 1px 5px rgba(180,140,0,0.5));}
-.family-sep{display:flex;align-items:center;justify-content:center;gap:7px;padding:4px 0;}
+.fc-name{
+  font-family: var(--mr);
+  font-size: clamp(17px,4.5vw,23px);
+  font-weight: 800;
+  margin-top: 10px;
+  display: block;
+
+  color: #c2185b;
+
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.15);
+}.family-sep{display:flex;align-items:center;justify-content:center;gap:7px;padding:4px 0;}
 .family-sep span{font-size:clamp(16px,4vw,22px);color:var(--lav2);opacity:0.7;animation:sepS 3s ease-in-out infinite;}
 .family-sep span:nth-child(2){animation-delay:0.5s;font-size:clamp(20px,5vw,28px);}
 .family-sep span:nth-child(3){animation-delay:1s;}
@@ -340,7 +350,7 @@ body{font-family:var(--mr);background:#0d0520;color:var(--dark);overflow-x:hidde
 .tl-card.main-event h3{color:var(--rose);font-size:clamp(17px,4.2vw,21px);}
 .tl-meta{font-size:clamp(12px,3vw,14px);color:var(--mid);line-height:2;font-family:var(--mr);}
 .tl-meta strong{color:var(--dark);font-weight:700;}
-.tl-time{display:inline-block;background:linear-gradient(135deg,var(--lav3),var(--lav));color:white;font-size:clamp(10px,2.5vw,12px);padding:3px clamp(10px,2.5vw,16px);border-radius:20px;margin-top:7px;font-weight:700;font-family:var(--mr);}
+.tl-time{display:inline-block;background:linear-gradient(135deg,var(--lav3),var(--lav));color:white;font-size:clamp(10px,2.5vw,12px);padding:5px clamp(10px,2.5vw,16px);border-radius:20px;margin-top:7px;font-weight:700;font-family:var(--mr);}
 .tl-badge{display:inline-block;background:linear-gradient(135deg,var(--lav2),#b89de0);color:white;font-size:clamp(9px,2.5vw,11px);padding:2px 9px;border-radius:20px;margin-left:5px;font-weight:700;vertical-align:middle;font-family:var(--mr);}
 .imp-tag{display:inline-flex;align-items:center;gap:2px;background:linear-gradient(135deg,var(--rose),var(--rose2));color:white;font-size:clamp(9px,2.5vw,10px);padding:2px 9px;border-radius:12px;font-weight:700;font-family:var(--mr);vertical-align:middle;margin-left:5px;}
 
@@ -366,7 +376,7 @@ body{font-family:var(--mr);background:#0d0520;color:var(--dark);overflow-x:hidde
 @keyframes vdcP{0%,100%{width:110px;height:110px;opacity:0.3}50%{width:190px;height:190px;opacity:0.08}}
 .vdc-icon{font-size:clamp(32px,8vw,44px);}
 .vdc-label{font-family:var(--mr);font-size:clamp(13px,3.5vw,16px);opacity:0.85;color:var(--gold2);}
-.vdc-big{font-family:var(--mr);font-size:clamp(26px,7vw,44px);font-weight:800;line-height:1.1;background:linear-gradient(180deg,#fff8dc,#ffd700,#b8860b,#ffd700,#fff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.vdc-big{font-family:var(--mr);font-size:clamp(26px,7vw,44px);font-weight:800;line-height:1.5;background:linear-gradient(180deg,#fff8dc,#ffd700,#b8860b,#ffd700,#fff0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .vdc-detail{font-size:clamp(12px,3vw,15px);line-height:2;opacity:0.88;font-family:var(--mr);}
 .vdc-detail strong{color:var(--gold2);}
 
@@ -420,7 +430,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
     <div class="intro-om">🕉️</div>
   </div>
   <div class="intro-text">
-    <h2>ऋषिकेश &amp; ऋतिका</h2>
+    <h2>ऋषिकेश & ऋतिका</h2>
     <p>✦ शुभ विवाह ✦</p>
   </div>
 </div>
@@ -503,7 +513,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
 
       <!-- SLIDES — using picsum.photos for beautiful dummy photos -->
       <div class="photo-slide active" id="slide-0">
-        <img src="https://picsum.photos/seed/wedding1/1600/900" alt="Photo 1" loading="lazy">
+        <img src="../../assets/Images/demo1.jpg" alt="Photo 1" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">ऋषिकेश &amp; ऋतिका</span>
           <span class="pcap-sub">✦ एक नवीन सुरुवात ✦</span>
@@ -511,7 +521,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
       </div>
 
       <div class="photo-slide" id="slide-1">
-        <img src="https://picsum.photos/seed/couple2/1600/900" alt="Photo 2" loading="lazy">
+        <img src="../../assets/Images/demo2.jpg" alt="Photo 2" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">प्रेमाची गाथा</span>
           <span class="pcap-sub">✦ दोन मने, एक आत्मा ✦</span>
@@ -519,7 +529,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
       </div>
 
       <div class="photo-slide" id="slide-2">
-        <img src="https://picsum.photos/seed/romance3/1600/900" alt="Photo 3" loading="lazy">
+        <img src="../../assets/Images/demo3.jpg" alt="Photo 3" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">साखरपुडा</span>
           <span class="pcap-sub">✦ Engagement ✦</span>
@@ -527,15 +537,23 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
       </div>
 
       <div class="photo-slide" id="slide-3">
-        <img src="https://picsum.photos/seed/flowers4/1600/900" alt="Photo 4" loading="lazy">
+        <img src="../../assets/Images/demo4.jpg" alt="Photo 4" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">आमची कहाणी</span>
           <span class="pcap-sub">✦ Our Story ✦</span>
         </div>
       </div>
 
+      <div class="photo-slide" id="slide-4">
+        <img src="../../assets/Images/demo7.jpg" alt="Photo 5" loading="lazy">
+        <div class="photo-caption">
+          <span class="pcap-main">आम्ही</span>
+          <span class="pcap-sub">✦ We Are ✦</span>
+        </div>
+      </div>
+
       <div class="photo-slide" id="slide-5">
-        <img src="https://picsum.photos/seed/love5/1600/900" alt="Photo 5" loading="lazy">
+        <img src="../../assets/Images/demo5.jpg" alt="Photo 6" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">नवजीवन</span>
           <span class="pcap-sub">✦ १० मे २०२६ ✦</span>
@@ -543,7 +561,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
       </div>
 
       <div class="photo-slide" id="slide-6">
-        <img src="https://picsum.photos/seed/wedding6/1600/900" alt="Photo 6" loading="lazy">
+        <img src="../../assets/Images/demo6.jpg" alt="Photo 6" loading="lazy">
         <div class="photo-caption">
           <span class="pcap-main">आपले स्वागत आहे</span>
           <span class="pcap-sub">✦ आनंदाने या ✦</span>
@@ -616,7 +634,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
         <div class="tl-item anim-slide" style="transition-delay:0.1s"><div class="tl-dot">🎶</div><div class="tl-card"><h3>मेहंदी सोहळा</h3><div class="tl-meta"><strong>९ मे २०२६</strong>, शनिवार<br>गायकवाड गल्ली, कवठेपिरान</div><span class="tl-time">🕔 सकाळी १०:०० वा.</span></div></div>
         <div class="tl-item anim-slide" style="transition-delay:0.2s"><div class="tl-dot">🎊</div><div class="tl-card"><h3>वरात व स्वागत समारंभ</h3><div class="tl-meta"><strong>१० मे २०२६</strong>, रविवार<br>गायकवाड गल्ली, कवठेपिरान</div><span class="tl-time">🕖 सकाळी ९:०० वा.</span></div></div>
         <div class="tl-item anim-slide" style="transition-delay:0.3s"><div class="tl-dot">🌸</div><div class="tl-card main-event"><h3>विवाह विधी <span class="imp-tag">⭐ मुख्य</span></h3><div class="tl-meta"><strong>१० मे २०२६</strong> — शुभ मुहूर्त<br><strong>मीती वैशाख • कृष्ण अष्टमी</strong><br>श्री मंगल कार्यालय, कवठेपिरान</div><span class="tl-time">🕙 दुपारी १२:४६ वा.</span></div></div>
-        <div class="tl-item anim-slide" style="transition-delay:0.4s"><div class="tl-dot">🍽️</div><div class="tl-card"><h3>मंगल भोजन <span class="tl-badge">सर्वांसाठी</span></h3><div class="tl-meta">विवाह समारंभा-पूर्वीपासून<br>महाराष्ट्रीय पारंपारिक स्वागत जेवण</div><span class="tl-time">🕑 सकाळी ११:०० वा.</span></div></div>
+        <div class="tl-item anim-slide" style="transition-delay:0.4s"><div class="tl-dot">🍽️</div><div class="tl-card"><h3>मंगल भोजन <span class="tl-badge">सर्वांसाठी</span></h3><div class="tl-meta">विवाह समारंभा-पूर्वीपासून<br><strong>श्री मंगल कार्यालय, कवठेपिरान</strong></div><span class="tl-time">🕑 सकाळी ११:०० वा.</span></div></div>
       </div>
     </div>
   </div>
@@ -680,7 +698,7 @@ footer{width:100%;background:linear-gradient(135deg,#0d0520,#1a0a3d,#0d0520);col
     <div class="foot-em">🌸 ऋषिकेश &amp; ऋतिका 🌸</div>
     <div class="foot-line"></div>
     <div>शुभ विवाह सोहळा • १० मे २०२६</div>
-    <div style="font-size:clamp(10px,2.2vw,11px);margin-top:4px;opacity:0.25">प्रेमाने बनवले — आपल्यासाठी 💐</div>
+    <div style="font-size:clamp(10px,2.2vw,11px);margin-top:4px;opacity:0.25; color: #ffffff;">प्रेमाने बनवले — आपल्यासाठी 💐</div>
   </footer>
 
 </div><!-- /main -->
