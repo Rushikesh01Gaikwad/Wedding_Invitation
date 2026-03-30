@@ -407,33 +407,31 @@
         overflow: hidden;
       }
       .split-name .inner {
-        display: block;
-        font-family: var(--mr);
-        font-size: clamp(60px, 16vw, 116px);
-        font-weight: 800;
-        line-height: 1.6;
-        transform: translateY(110%);
-        transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-        padding-bottom: 4px;
-        background: linear-gradient(
-          135deg,
-          #fff8dc 0%,
-          #ffd700 15%,
-          #ffe566 28%,
-          #b8860b 40%,
-          #ffd700 52%,
-          #fff0a0 60%,
-          #c8960c 72%,
-          #ffd700 85%,
-          #fff8dc 100%
-        );
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(0 4px 16px rgba(180, 140, 0, 0.7))
-          drop-shadow(0 0 50px rgba(255, 215, 0, 0.25));
-      }
+  display: block;
+  font-family: var(--mr);
+  font-size: clamp(60px, 16vw, 116px);
+  font-weight: 800;
+  line-height: 1.6;
+  transform: translateY(110%);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-bottom: 4px;
+  background: linear-gradient(
+    135deg,
+    #fff8dc 0%,
+    #ffd700 15%,
+    #ffe566 28%,
+    #b8860b 40%,
+    #ffd700 52%,
+    #fff0a0 60%,
+    #c8960c 72%,
+    #ffd700 85%,
+    #fff8dc 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
       .split-name.ready .inner {
         transform: translateY(0);
         animation: goldShimmer 4s ease-in-out infinite;
