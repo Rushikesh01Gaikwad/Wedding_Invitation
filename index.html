@@ -468,7 +468,7 @@
         align-items: center;
         justify-content: center;
         gap: clamp(10px, 3vw, 20px);
-        margin: clamp(18px, 4vw, 28px) auto;
+        /* margin: clamp(18px, 4vw, 28px) auto; */
         max-width: 300px;
       }
       .hdl {
@@ -488,7 +488,7 @@
       }
       .hero-date {
         font-family: var(--mr);
-        font-size: clamp(16px, 4vw, 22px);
+        font-size: clamp(18px, 4vw, 25px);
         font-weight: 700;
         color: rgba(240, 208, 128, 0.9);
         opacity: 0;
@@ -513,7 +513,7 @@
         font-family: var(--mr);
       }
       .hero-tithi {
-        font-size: clamp(11px, 2.5vw, 14px);
+        font-size: clamp(16px, 2.5vw, 16px);
         color: rgba(155, 125, 212, 0.8);
         margin-top: 8px;
         font-family: var(--mr);
@@ -527,8 +527,8 @@
         flex-direction: column;
         align-items: center;
         gap: 8px;
-        color: rgba(255, 215, 0, 0.5);
-        font-size: 11px;
+        color: rgba(255, 255, 255, 0.642);
+        font-size: 14px;
         letter-spacing: 3px;
         font-family: var(--mr);
       }
@@ -564,7 +564,7 @@
 ════════════════════════════ */
       .verse-sec {
         width: 100%;
-        padding: clamp(44px, 7vw, 70px) clamp(16px, 5vw, 24px);
+        padding: clamp(0px, 7vw, 0px) clamp(16px, 5vw, 24px);
         background: linear-gradient(135deg, #0d0520, #1a0a3d);
       }
       .verse-inner {
@@ -1153,6 +1153,52 @@
         font-style: italic;
       }
 
+      .countdown-wrap {
+        margin: 12px auto 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        background: rgba(0,0,0,0.35);
+        backdrop-filter: blur(8px);
+        padding: 6px 20px;
+        border-radius: 80px;
+        width: fit-content;
+        border: 1px solid rgba(255,215,0,0.25);
+      }
+      .countdown-item {
+        text-align: center;
+        background: rgba(13,5,32,0.6);
+        padding: 5px 12px;
+        border-radius: 40px;
+        min-width: 70px;
+      }
+      .countdown-number {
+        font-size: 28px;
+        font-weight: 800;
+        color: #ffe5a3;
+        font-family: monospace;
+        line-height: 1;
+      }
+      .countdown-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        color: rgba(240,208,128,0.8);
+        text-transform: uppercase;
+      }
+      .countdown-sep {
+        font-size: 22px;
+        color: var(--rose2);
+        font-weight: bold;
+      }
+      @media (max-width: 580px) {
+        .countdown-item { padding: 3px 8px; min-width: 55px; }
+        .countdown-number { font-size: 20px; }
+        .countdown-sep { font-size: 16px; }
+        .countdown-wrap { gap: 6px; padding: 6px 12px; }
+      }
+
       /* ════════════════════════════
    TIMELINE
 ════════════════════════════ */
@@ -1660,6 +1706,28 @@
           opacity: 0;
         }
       }
+
+      /* EXTRA FLOATING FLOWERS LAYER */
+      .extra-flower-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .float-flower {
+        position: absolute;
+        font-size: 22px;
+        opacity: 0.3;
+        animation: floatAnim 14s infinite linear;
+        filter: drop-shadow(0 0 2px rgba(255,215,0,0.5));
+      }
+      @keyframes floatAnim {
+        0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+        15% { opacity: 0.5; }
+        85% { opacity: 0.5; }
+        100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+      }
     </style>
   </head>
   <body>
@@ -1723,6 +1791,7 @@
 
       <!-- HERO -->
       <div class="hero">
+                <div class="extra-flower-layer" id="extraFlowersLayer"></div>
         <div class="hero-ring"></div>
         <div class="hero-ring"></div>
         <div class="hero-ring"></div>
@@ -1743,6 +1812,15 @@
             <div class="hdl"></div>
             <div class="hdm">🌼</div>
             <div class="hdl r"></div>
+          </div>
+          <div class="countdown-wrap" id="weddingCountdown">
+            <div class="countdown-item"><div class="countdown-number" id="cdDays">00</div><div class="countdown-label">दिवस</div></div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item"><div class="countdown-number" id="cdHours">00</div><div class="countdown-label">तास</div></div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item"><div class="countdown-number" id="cdMins">00</div><div class="countdown-label">मिनिटे</div></div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item"><div class="countdown-number" id="cdSecs">00</div><div class="countdown-label">सेकंद</div></div>
           </div>
           <div class="hero-date" id="heroDate">
             १० मे २०२६
@@ -2102,179 +2180,114 @@
     <!-- /main -->
 
     <script>
-      /* ─── CURSOR ─── */
-      var cur = document.getElementById("cursor"),
-        trail = document.getElementById("cursor-trail"),
-        mx = 0,
-        my = 0;
-      document.addEventListener("mousemove", function (e) {
-        mx = e.clientX;
-        my = e.clientY;
-        cur.style.left = mx - 6 + "px";
-        cur.style.top = my - 6 + "px";
-        setTimeout(function () {
-          trail.style.left = mx - 16 + "px";
-          trail.style.top = my - 16 + "px";
-        }, 80);
-      });
-      document.addEventListener(
-        "touchstart",
-        function () {
-          cur.style.display = "none";
-          trail.style.display = "none";
-          document.body.style.cursor = "auto";
-        },
-        { passive: true },
-      );
 
-      /* ─── SPARKLES ─── */
-      var sc = ["#ffd700", "#c85b8a", "#c9a84c", "#9b7dd4", "#ffe066"];
-      function spark(x, y) {
-        for (var i = 0; i < 5; i++) {
-          var s = document.createElement("div");
-          s.className = "sparkle";
-          var a = Math.random() * 360,
-            d = 20 + Math.random() * 40;
-          s.style.cssText =
-            "left:" +
-            x +
-            "px;top:" +
-            y +
-            "px;background:" +
-            sc[Math.floor(Math.random() * sc.length)] +
-            ";--tx:" +
-            Math.cos(a) * d +
-            "px;--ty:" +
-            Math.sin(a) * d +
-            "px";
-          document.body.appendChild(s);
-          setTimeout(
-            function (el) {
-              el.remove();
-            },
-            800,
-            s,
-          );
+      // COUNTDOWN TIMER (live)
+      function updateCountdown() {
+        const weddingDate = new Date(2026, 4, 10, 0, 0, 0);
+        const now = new Date();
+        const diff = weddingDate - now;
+        if (diff <= 0) {
+          document.getElementById("cdDays").innerText = "00";
+          document.getElementById("cdHours").innerText = "00";
+          document.getElementById("cdMins").innerText = "00";
+          document.getElementById("cdSecs").innerText = "00";
+          return;
+        }
+        const days = Math.floor(diff / (1000*60*60*24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        document.getElementById("cdDays").innerText = days.toString().padStart(2,'0');
+        document.getElementById("cdHours").innerText = hours.toString().padStart(2,'0');
+        document.getElementById("cdMins").innerText = mins.toString().padStart(2,'0');
+        document.getElementById("cdSecs").innerText = secs.toString().padStart(2,'0');
+      }
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+      
+      /* ─── CURSOR ─── */
+     function addExtraFlowers() {
+        const container = document.getElementById("extraFlowersLayer");
+        if (!container) return;
+        const flowers = ["🌸", "🌼", "🌷", "💜", "🪷", "🌺", "🏵️", "✨", "🌻", "💮"];
+        for (let i = 0; i < 60; i++) {
+          const f = document.createElement("div");
+          f.className = "float-flower";
+          f.style.left = Math.random() * 100 + "%";
+          f.style.fontSize = (14 + Math.random() * 26) + "px";
+          f.style.animationDuration = (9 + Math.random() * 15) + "s";
+          f.style.animationDelay = (Math.random() * 12) + "s";
+          f.style.opacity = 0.2 + Math.random() * 0.4;
+          f.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+          container.appendChild(f);
         }
       }
-      var lsy = 0,
-        stk = 0;
-      window.addEventListener(
-        "scroll",
-        function () {
-          var sy = window.scrollY;
-          if (Math.abs(sy - lsy) > 50) {
-            stk++;
-            if (stk % 2 === 0)
-              spark(
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerHeight * 0.8,
-              );
-            lsy = sy;
-          }
-        },
-        { passive: true },
-      );
 
-      /* ─── INTRO ─── */
-      (function () {
+      // CURSOR
+      var cur = document.getElementById("cursor"), trail = document.getElementById("cursor-trail"), mx = 0, my = 0;
+      document.addEventListener("mousemove", function(e) { mx = e.clientX; my = e.clientY; cur.style.left = mx - 6 + "px"; cur.style.top = my - 6 + "px"; setTimeout(function() { trail.style.left = mx - 16 + "px"; trail.style.top = my - 16 + "px"; }, 80); });
+      document.addEventListener("touchstart", function() { cur.style.display = "none"; trail.style.display = "none"; document.body.style.cursor = "auto"; }, { passive: true });
+
+      // SPARKLES
+      var sc = ["#ffd700", "#c85b8a", "#c9a84c", "#9b7dd4", "#ffe066"];
+      function spark(x, y) { for (var i = 0; i < 5; i++) { var s = document.createElement("div"); s.className = "sparkle"; var a = Math.random() * 360, d = 20 + Math.random() * 40; s.style.cssText = "left:" + x + "px;top:" + y + "px;background:" + sc[Math.floor(Math.random() * sc.length)] + ";--tx:" + Math.cos(a) * d + "px;--ty:" + Math.sin(a) * d + "px"; document.body.appendChild(s); setTimeout(function(el) { el.remove(); }, 800, s); } }
+      var lsy = 0, stk = 0;
+      window.addEventListener("scroll", function() { var sy = window.scrollY; if (Math.abs(sy - lsy) > 50) { stk++; if (stk % 2 === 0) spark(Math.random() * window.innerWidth, Math.random() * window.innerHeight * 0.8); lsy = sy; } }, { passive: true });
+
+      // INTRO ANIMATION
+      (function() {
         var ring = document.getElementById("petalRing");
         var emojis = ["🌸", "💜", "🌷", "🌼", "🏵️", "🪷"];
-        var count = 12,
-          r = Math.min(window.innerWidth * 0.17, 95),
-          petals = [];
+        var count = 12, r = Math.min(window.innerWidth * 0.17, 95), petals = [];
         for (var i = 0; i < count; i++) {
           var el = document.createElement("div");
           var angle = (i / count) * 2 * Math.PI;
-          el.style.cssText =
-            "position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;display:flex;align-items:center;justify-content:center;font-size:20px;opacity:0;will-change:transform,opacity;transition:opacity 0.4s ease,transform 0.75s cubic-bezier(0.34,1.56,0.64,1)";
+          el.style.cssText = "position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;display:flex;align-items:center;justify-content:center;font-size:20px;opacity:0;will-change:transform,opacity;transition:opacity 0.4s ease,transform 0.75s cubic-bezier(0.34,1.56,0.64,1)";
           el.textContent = emojis[i % emojis.length];
           ring.appendChild(el);
           petals.push({ el: el, angle: angle });
         }
-        petals.forEach(function (p, i) {
-          setTimeout(
-            function () {
-              var tx = Math.cos(p.angle) * r,
-                ty = Math.sin(p.angle) * r;
-              p.el.style.opacity = "1";
-              p.el.style.transform =
-                "translate(" +
-                tx +
-                "px," +
-                ty +
-                "px) rotate(" +
-                (p.angle * 180) / Math.PI +
-                "deg)";
-            },
-            180 + i * 85,
-          );
+        petals.forEach(function(p, i) {
+          setTimeout(function() {
+            var tx = Math.cos(p.angle) * r, ty = Math.sin(p.angle) * r;
+            p.el.style.opacity = "1";
+            p.el.style.transform = "translate(" + tx + "px," + ty + "px) rotate(" + (p.angle * 180) / Math.PI + "deg)";
+          }, 180 + i * 85);
         });
-        var rot = 0,
-          raf;
-        function spin() {
-          rot += 0.007;
-          ring.style.transform = "rotate(" + rot + "rad)";
-          raf = requestAnimationFrame(spin);
-        }
+        var rot = 0, raf;
+        function spin() { rot += 0.007; ring.style.transform = "rotate(" + rot + "rad)"; raf = requestAnimationFrame(spin); }
         setTimeout(spin, 1200);
-        setTimeout(function () {
+        setTimeout(function() {
           document.getElementById("intro").classList.add("fade-out");
-          setTimeout(function () {
+          setTimeout(function() {
             document.getElementById("intro").style.display = "none";
             cancelAnimationFrame(raf);
           }, 950);
           document.getElementById("main").classList.add("show");
-          setTimeout(function () {
-            document.getElementById("groomName").classList.add("ready");
-          }, 200);
-          setTimeout(function () {
-            document.getElementById("heroAnd").classList.add("ready");
-          }, 600);
-          setTimeout(function () {
-            document.getElementById("brideName").classList.add("ready");
-          }, 900);
-          setTimeout(function () {
-            document.getElementById("heroDate").classList.add("ready");
-          }, 1300);
+          setTimeout(function() { document.getElementById("groomName").classList.add("ready"); }, 200);
+          setTimeout(function() { document.getElementById("heroAnd").classList.add("ready"); }, 600);
+          setTimeout(function() { document.getElementById("brideName").classList.add("ready"); }, 900);
+          setTimeout(function() { document.getElementById("heroDate").classList.add("ready"); }, 1300);
           startCanvas();
           setTimeout(initReveal, 200);
+          addExtraFlowers();
         }, 3400);
       })();
-      
 
-      /* ─── CANVAS PETALS ─── */
+      // CANVAS PETALS
       function startCanvas() {
-        var canvas = document.getElementById("floatCanvas"),
-          ctx = canvas.getContext("2d"),
-          W,
-          H;
-        function resize() {
-          W = canvas.width = window.innerWidth;
-          H = canvas.height = window.innerHeight;
-        }
+        var canvas = document.getElementById("floatCanvas"), ctx = canvas.getContext("2d"), W, H;
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
         resize();
         window.addEventListener("resize", resize, { passive: true });
-        var emojis = ["🌸", "💜", "🌼", "🌷", "🏵️", "🪷", "✨", "⭐"],
-          parts = [];
+        var emojis = ["🌸", "💜", "🌼", "🌷", "🏵️", "🪷", "✨", "⭐"], parts = [];
         function newP(sc) {
-          return {
-            x: Math.random() * W,
-            y: sc ? Math.random() * H : -30,
-            size: 10 + Math.random() * 10,
-            vy: 0.25 + Math.random() * 0.55,
-            vx: (Math.random() - 0.5) * 0.35,
-            rot: Math.random() * 6.28,
-            spin: (Math.random() - 0.5) * 0.015,
-            alpha: 0.1 + Math.random() * 0.22,
-            drift: (Math.random() - 0.5) * 0.003,
-            emoji: emojis[Math.floor(Math.random() * emojis.length)],
-          };
+          return { x: Math.random() * W, y: sc ? Math.random() * H : -30, size: 10 + Math.random() * 10, vy: 0.25 + Math.random() * 0.55, vx: (Math.random() - 0.5) * 0.35, rot: Math.random() * 6.28, spin: (Math.random() - 0.5) * 0.015, alpha: 0.1 + Math.random() * 0.22, drift: (Math.random() - 0.5) * 0.003, emoji: emojis[Math.floor(Math.random() * emojis.length)] };
         }
-        for (var i = 0; i < 20; i++) parts.push(newP(true));
+        for (var i = 0; i < 24; i++) parts.push(newP(true));
         function draw() {
           ctx.clearRect(0, 0, W, H);
-          parts.forEach(function (p, i) {
+          parts.forEach(function(p, i) {
             ctx.save();
             ctx.globalAlpha = p.alpha;
             ctx.translate(p.x, p.y);
